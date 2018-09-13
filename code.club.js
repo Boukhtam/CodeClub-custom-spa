@@ -4,6 +4,7 @@ import app from './server/setup'
 import {port, db_host, db_port, db_dialect, db_name} from './configurations/env.vars'
 
 //Setup mongoose connection
+mongoose.set('useCreateIndex', true);
 mongoose.connect(`${db_dialect}://${db_host}:${db_port}/${db_name}`, { useNewUrlParser: true })
 mongoose.Promise = global.Promise
 const db = mongoose.connection

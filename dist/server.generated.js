@@ -95,7 +95,7 @@ module.exports =
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mongoose */ \"mongoose\");\n/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mongoose__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _server_setup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./server/setup */ \"./server/setup.js\");\n/* harmony import */ var _configurations_env_vars__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./configurations/env.vars */ \"./configurations/env.vars.js\");\n/* harmony import */ var _configurations_env_vars__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_configurations_env_vars__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\n\n\n//Setup mongoose connection\nmongoose__WEBPACK_IMPORTED_MODULE_0___default.a.connect(`${_configurations_env_vars__WEBPACK_IMPORTED_MODULE_2__[\"db_dialect\"]}://${_configurations_env_vars__WEBPACK_IMPORTED_MODULE_2__[\"db_host\"]}:${_configurations_env_vars__WEBPACK_IMPORTED_MODULE_2__[\"db_port\"]}/${_configurations_env_vars__WEBPACK_IMPORTED_MODULE_2__[\"db_name\"]}`, { useNewUrlParser: true });\nmongoose__WEBPACK_IMPORTED_MODULE_0___default.a.Promise = global.Promise;\nconst db = mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.connection;\ndb.on('open', console.info.bind(console, 'mongoose connected ...')).on('error', console.error.bind(console, 'mongoose connection error:'));\n\n_server_setup__WEBPACK_IMPORTED_MODULE_1__[\"default\"].listen(_configurations_env_vars__WEBPACK_IMPORTED_MODULE_2__[\"port\"], err => {\n    if (err) console.log(err);\n    console.info('Server started on port: %s.', _configurations_env_vars__WEBPACK_IMPORTED_MODULE_2__[\"port\"]);\n});\n\n//# sourceURL=webpack:///./code.club.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mongoose */ \"mongoose\");\n/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mongoose__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _server_setup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./server/setup */ \"./server/setup.js\");\n/* harmony import */ var _configurations_env_vars__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./configurations/env.vars */ \"./configurations/env.vars.js\");\n/* harmony import */ var _configurations_env_vars__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_configurations_env_vars__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\n\n\n//Setup mongoose connection\nmongoose__WEBPACK_IMPORTED_MODULE_0___default.a.set('useCreateIndex', true);\nmongoose__WEBPACK_IMPORTED_MODULE_0___default.a.connect(`${_configurations_env_vars__WEBPACK_IMPORTED_MODULE_2__[\"db_dialect\"]}://${_configurations_env_vars__WEBPACK_IMPORTED_MODULE_2__[\"db_host\"]}:${_configurations_env_vars__WEBPACK_IMPORTED_MODULE_2__[\"db_port\"]}/${_configurations_env_vars__WEBPACK_IMPORTED_MODULE_2__[\"db_name\"]}`, { useNewUrlParser: true });\nmongoose__WEBPACK_IMPORTED_MODULE_0___default.a.Promise = global.Promise;\nconst db = mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.connection;\ndb.on('open', console.info.bind(console, 'mongoose connected ...')).on('error', console.error.bind(console, 'mongoose connection error:'));\n\n_server_setup__WEBPACK_IMPORTED_MODULE_1__[\"default\"].listen(_configurations_env_vars__WEBPACK_IMPORTED_MODULE_2__[\"port\"], err => {\n    if (err) console.log(err);\n    console.info('Server started on port: %s.', _configurations_env_vars__WEBPACK_IMPORTED_MODULE_2__[\"port\"]);\n});\n\n//# sourceURL=webpack:///./code.club.js?");
 
 /***/ }),
 
@@ -106,7 +106,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var mong
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("__webpack_require__(/*! dotenv */ \"dotenv\").config();\n\nmodule.exports = {\n    app: process.env.APP || 'dev',\n    port: process.env.PORT || '3000',\n    db_dialect: process.env.DB_DIALECT || 'mongodb',\n    db_host: process.env.DB_HOST || 'localhost',\n    db_port: process.env.DB_PORT || '27017',\n    db_name: process.env.DB_NAME || 'PharmaZone',\n    db_user: process.env.DB_USER || 'root',\n    db_password: process.env.DB_PASSWORD || 'password',\n    jwt_encryption: process.env.JWT_ENCRYPTION || 'BLALBLA',\n    jwt_expiration: process.env.JWT_EXPIRATION || 1000 * 60 * 60 * 24 * 7,\n    session_encryption: 'secret',\n    session_expiration: 1000 * 60, // one min\n    cookie_encryption: 'secret',\n    cookie_name: 'session_id'\n};\n\n//# sourceURL=webpack:///./configurations/env.vars.js?");
+eval("__webpack_require__(/*! dotenv */ \"dotenv\").config();\n\nmodule.exports = {\n    app: process.env.APP || 'dev',\n    port: process.env.PORT || '1337',\n    db_dialect: process.env.DB_DIALECT || 'mongodb',\n    db_host: process.env.DB_HOST || 'localhost',\n    db_port: process.env.DB_PORT || '27017',\n    db_name: process.env.DB_NAME || 'CodeClub',\n    db_user: process.env.DB_USER || 'root',\n    db_password: process.env.DB_PASSWORD || 'password',\n    jwt_encryption: process.env.JWT_ENCRYPTION || 'BLALBLA',\n    jwt_expiration: process.env.JWT_EXPIRATION || 1000 * 60 * 60 * 24 * 7,\n    session_encryption: 'secret',\n    session_expiration: 1000 * 60, // one min\n    cookie_encryption: 'secret',\n    cookie_name: 'session_id'\n};\n\n//# sourceURL=webpack:///./configurations/env.vars.js?");
 
 /***/ }),
 
@@ -122,6 +122,90 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* WEBPACK VAR INJECTION */(f
 
 /***/ }),
 
+/***/ "./configurations/passport.config.js":
+/*!*******************************************!*\
+  !*** ./configurations/passport.config.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var passport__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! passport */ \"passport\");\n/* harmony import */ var passport__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(passport__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var passport_local__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! passport-local */ \"passport-local\");\n/* harmony import */ var passport_local__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(passport_local__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var passport_jwt__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! passport-jwt */ \"passport-jwt\");\n/* harmony import */ var passport_jwt__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(passport_jwt__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var validator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! validator */ \"validator\");\n/* harmony import */ var validator__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(validator__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _models__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../models */ \"./models/index.js\");\n/* harmony import */ var _configurations_env_vars__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../configurations/env.vars */ \"./configurations/env.vars.js\");\n/* harmony import */ var _configurations_env_vars__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_configurations_env_vars__WEBPACK_IMPORTED_MODULE_5__);\n\n\n\n\n\n\n\n\n\npassport__WEBPACK_IMPORTED_MODULE_0___default.a.use(new passport_local__WEBPACK_IMPORTED_MODULE_1__[\"Strategy\"]({\n  usernameField: 'unique_key',\n  passwordField: 'password'\n}, async (unique_key, password, done) => {\n  let auth_info = {};\n  auth_info.status = 'login';\n\n  if (!unique_key) return done(null, false, { message: 'Please enter an email or a phone number to login' });\n\n  if (!password) done(null, false, { message: 'Please enter a password to login' });\n\n  let err, user;\n  if (validator__WEBPACK_IMPORTED_MODULE_3___default.a.isEmail(unique_key)) {\n    auth_info.method = 'email';\n    console.log(unique_key);\n\n    [err, user] = await to(User.findOne({ \"email\": unique_key }));\n    if (err) return done(err);\n\n    if (!user) return done(null, false, { message: 'Incorrect email.' });\n  } else if (validator__WEBPACK_IMPORTED_MODULE_3___default.a.isMobilePhone(unique_key, 'any')) {\n    //checks if only phone number was sent\n    auth_info.method = 'phone';\n\n    [err, user] = await to(User.findOne({ \"phone\": unique_key }));\n    if (err) done(err);\n    if (!user) return done(null, false, { message: 'Incorrect phone number.' });\n  } else {\n    return done(null, false, { message: 'Invalid email or phone number.' });\n  }\n\n  if (user.isLocked) {\n    [err] = await to(user.incLoginAttempts());\n    if (err) TE(err);\n\n    return done(null, false, { message: 'Max attempts: ' + user.lockUntil });\n  };\n\n  [err, pass] = await to(user.comparePassword(password));\n\n  if (err) done(err);\n\n  if (pass) {\n    if (!user.loginAttempts && !user.lockUntil) return done(null, user);\n\n    var updates = {\n      $set: { loginAttempts: 0 },\n      $unset: { lockUntil: 1 }\n    };\n\n    [err, up] = await to(user.update(updates));\n    if (err) return done(err);\n    return done(null, user);\n  }\n\n  user.incLoginAttempts();\n  return done(null, false, { message: 'Incorrect password.' });\n}));\n\nlet opts = {};\nopts.jwtFromRequest = passport_jwt__WEBPACK_IMPORTED_MODULE_2__[\"ExtractJwt\"].fromAuthHeaderAsBearerToken();\nopts.secretOrKey = _configurations_env_vars__WEBPACK_IMPORTED_MODULE_5___default.a.jwt_encryption;\n\npassport__WEBPACK_IMPORTED_MODULE_0___default.a.use(new passport_jwt__WEBPACK_IMPORTED_MODULE_2__[\"Strategy\"](opts, async function (jwt_payload, done) {\n  let err, user;\n  [err, user] = await to(User.findById(jwt_payload.user_id));\n  if (err) return done(err, false);\n  if (user) {\n    return done(null, user);\n  } else {\n    return done(null, false);\n  }\n}));\n\npassport__WEBPACK_IMPORTED_MODULE_0___default.a.serializeUser(function (user, done) {\n  done(null, user.id);\n});\n\npassport__WEBPACK_IMPORTED_MODULE_0___default.a.deserializeUser(function (id, done) {\n  User.findById(id, function (err, user) {\n    done(err, user);\n  });\n});\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (app => {\n  // Passport init\n  app.use(passport__WEBPACK_IMPORTED_MODULE_0___default.a.initialize());\n  app.use(passport__WEBPACK_IMPORTED_MODULE_0___default.a.session());\n  console.log('passport loaded...');\n  // return app;\n});\n\n//# sourceURL=webpack:///./configurations/passport.config.js?");
+
+/***/ }),
+
+/***/ "./controllers/index.js":
+/*!******************************!*\
+  !*** ./controllers/index.js ***!
+  \******************************/
+/*! exports provided: userController */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _user_controller__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./user.controller */ \"./controllers/user.controller.js\");\n/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, \"userController\", function() { return _user_controller__WEBPACK_IMPORTED_MODULE_0__; });\n\n\n\n\n//# sourceURL=webpack:///./controllers/index.js?");
+
+/***/ }),
+
+/***/ "./controllers/user.controller.js":
+/*!****************************************!*\
+  !*** ./controllers/user.controller.js ***!
+  \****************************************/
+/*! exports provided: renderLogin */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"renderLogin\", function() { return renderLogin; });\nconst renderLogin = async (req, res) => {\n    res.send('/users/login route up and running...');\n};\n\n\n\n//# sourceURL=webpack:///./controllers/user.controller.js?");
+
+/***/ }),
+
+/***/ "./models/index.js":
+/*!*************************!*\
+  !*** ./models/index.js ***!
+  \*************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _user_model__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./user.model */ \"./models/user.model.js\");\n\n// import ArticleModel from './article.model'\n// import CommentModel from './comment.model'\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({ UserModel: _user_model__WEBPACK_IMPORTED_MODULE_0__[\"default\"] });\n\n//# sourceURL=webpack:///./models/index.js?");
+
+/***/ }),
+
+/***/ "./models/user.model.js":
+/*!******************************!*\
+  !*** ./models/user.model.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mongoose */ \"mongoose\");\n/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mongoose__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var bcrypt__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bcrypt */ \"bcrypt\");\n/* harmony import */ var bcrypt__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(bcrypt__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jsonwebtoken */ \"jsonwebtoken\");\n/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jsonwebtoken__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _services_utils_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../services/utils.service */ \"./services/utils.service.js\");\n/* harmony import */ var _services_utils_service__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_services_utils_service__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _configurations_env_vars__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../configurations/env.vars */ \"./configurations/env.vars.js\");\n/* harmony import */ var _configurations_env_vars__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_configurations_env_vars__WEBPACK_IMPORTED_MODULE_4__);\nvar _this = undefined;\n\n\n\n\n\n\n\n\nconst Schema = mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.Schema;\nconst ObjectId = Schema.Types.ObjectId;\nconst MAX_LOGIN_ATTEMPTS = 5;\nconst LOCK_TIME = /*2 * 60 * */60 * 1000;\n\nlet UserSchema = new Schema({\n    username: { type: String },\n    first_name: { type: String },\n    last_name: { type: String },\n    email: {\n        type: String,\n        lowercase: true, trim: true, index: true, unique: true, sparse: true\n    },\n    phone: { type: String, lowercase: true, trim: true, index: true, unique: true, sparse: true },\n    password: { type: String },\n\n    admin: { type: Boolean, default: false },\n\n    places: [{ type: ObjectId }],\n\n    scopes: [{ type: String }],\n    loginAttempts: { type: Number, required: true, default: 0 },\n    lockUntil: { type: Number }\n}, { timestamps: true });\n\nUserSchema.virtual('full_name').set(name => {\n    let sp = name.split(' ');\n    _this.first_name = sp[0];\n    _this.last_name = sp[1];\n}).get(function () {\n    if (!this.first_name) return null;\n    if (!this.last_name) return this.first_name;\n\n    return this.first_name + ' ' + this.last_name;\n});\n\nUserSchema.virtual('isLocked').get(function () {\n    return !!(this.lockUntil && this.lockUntil > Date.now());\n});\n\nUserSchema.pre('save', async function (next) {\n    var user = this;\n\n    // only hash the password if it has been modified (or is new)\n    if (!user.isModified('password') || !user.isNew) return next();\n    // generate a salt\n    let err, salt, hash;\n\n    [err, salt] = await to(bcrypt__WEBPACK_IMPORTED_MODULE_1___default.a.genSalt(10));\n    if (err) Object(_services_utils_service__WEBPACK_IMPORTED_MODULE_3__[\"TE\"])(err);\n\n    [err, hash] = await to(bcrypt__WEBPACK_IMPORTED_MODULE_1___default.a.hash(user.password, salt));\n    if (err) Object(_services_utils_service__WEBPACK_IMPORTED_MODULE_3__[\"TE\"])(err);\n\n    user.password = hash;\n    next();\n});\n\nUserSchema.methods.comparePassword = async function (pw) {\n    let err, pass;\n    if (!this.password) Object(_services_utils_service__WEBPACK_IMPORTED_MODULE_3__[\"TE\"])('password not set');\n\n    [err, pass] = await to(bcrypt__WEBPACK_IMPORTED_MODULE_1___default.a.compare(pw, this.password));\n\n    if (err) Object(_services_utils_service__WEBPACK_IMPORTED_MODULE_3__[\"TE\"])(err);\n\n    return pass;\n};\n\nUserSchema.methods.incLoginAttempts = async function (callback) {\n    // if we have a previous lock that has expired, restart at 1\n    let err, user;\n    if (this.lockUntil && this.lockUntil < Date.now()) {\n\n        [err, user] = await to(this.update({\n            $set: { loginAttempts: 1 },\n            $unset: { lockUntil: 1 }\n        }));\n\n        if (err) Object(_services_utils_service__WEBPACK_IMPORTED_MODULE_3__[\"TE\"])('lakh...');\n\n        return user;\n    }\n    // otherwise we're incrementing\n    var updates = { $inc: { loginAttempts: 1 } };\n    // lock the account if we've reached max attempts and it's not locked already\n    if (this.loginAttempts + 1 >= MAX_LOGIN_ATTEMPTS && !this.isLocked) {\n        updates.$set = { lockUntil: Date.now() + LOCK_TIME };\n    }\n\n    [err, user] = await to(this.update(updates));\n\n    if (err) Object(_services_utils_service__WEBPACK_IMPORTED_MODULE_3__[\"TE\"])(err);\n    return user;\n};\n\nUserSchema.methods.getJWT = function () {\n    let expiration_time = parseInt(CONFIG.jwt_expiration);\n    return 'Bearer ' + jsonwebtoken__WEBPACK_IMPORTED_MODULE_2__[\"sign\"]({ user_id: this.id }, CONFIG.jwt_encryption, { expiresIn: expiration_time });\n};\n\nUserSchema.methods.toWeb = function () {\n    let json = this.toJSON();\n    let userData = {};\n\n    if (json.email) userData.email = json.email;\n    if (json.phone) userData.phone = json.phone;\n    if (json.first_name) userData.first_name = json.first_name;\n    if (json.last_name) userData.last_name = json.last_name;\n\n    return userData;\n};\n\nvar reasons = UserSchema.statics.failedLogin = {\n    NOT_FOUND: 0,\n    PASSWORD_INCORRECT: 1,\n    MAX_ATTEMPTS: 2\n};\n\nUserSchema.statics.getAuthenticated = function (username, password, callback) {\n    this.findOne({ username: username }, function (err, user) {\n        if (err) return callback(err);\n\n        if (!user) return callback(null, null, reasons.NOT_FOUND);\n\n        if (user.isLocked) {\n            return user.incLoginAttempts(function (err) {\n                if (err) return callback(err);\n\n                return callback(null, null, reasons.MAX_ATTEMPTS);\n            });\n        }\n\n        user.comparePassword(password, function (err, isMatch) {\n            if (err) callback(err);\n\n            if (isMatch) {\n                if (!user.loginAttempts && !user.lockUntil) return callback(null, user);\n\n                var updates = {\n                    $set: { loginAttempts: 0 },\n                    $unset: { lockUntil: 1 }\n                };\n                return user.update(updates, function (err) {\n                    if (err) return callback(err);\n                    return callback(null, user);\n                });\n            }\n\n            user.incLoginAttempts(function (err) {\n                if (err) return callback(err);\n\n                return callback(null, null, reasons.PASSWORD_INCORRECT);\n            });\n        });\n    });\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.model('UserModel', UserSchema));\n\n//# sourceURL=webpack:///./models/user.model.js?");
+
+/***/ }),
+
+/***/ "./routes/index.js":
+/*!*************************!*\
+  !*** ./routes/index.js ***!
+  \*************************/
+/*! exports provided: usersRoute */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _users_route__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./users.route */ \"./routes/users.route.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"usersRoute\", function() { return _users_route__WEBPACK_IMPORTED_MODULE_0__[\"default\"]; });\n\n\n\n\n\n//# sourceURL=webpack:///./routes/index.js?");
+
+/***/ }),
+
+/***/ "./routes/users.route.js":
+/*!*******************************!*\
+  !*** ./routes/users.route.js ***!
+  \*******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var passport__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! passport */ \"passport\");\n/* harmony import */ var passport__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(passport__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _controllers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../controllers */ \"./controllers/index.js\");\n\n\n\n\nconst router = express__WEBPACK_IMPORTED_MODULE_0___default.a.Router();\n\n// router.use()\n\nrouter.get('/login', _controllers__WEBPACK_IMPORTED_MODULE_2__[\"userController\"].renderLogin);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (router);\n\n//# sourceURL=webpack:///./routes/users.route.js?");
+
+/***/ }),
+
 /***/ "./server/setup.js":
 /*!*************************!*\
   !*** ./server/setup.js ***!
@@ -130,7 +214,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* WEBPACK VAR INJECTION */(f
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* WEBPACK VAR INJECTION */(function(__dirname) {/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var express_session__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! express-session */ \"express-session\");\n/* harmony import */ var express_session__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(express_session__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var connect_mongo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! connect-mongo */ \"connect-mongo\");\n/* harmony import */ var connect_mongo__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(connect_mongo__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! mongoose */ \"mongoose\");\n/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(mongoose__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var cookie_parser__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! cookie-parser */ \"cookie-parser\");\n/* harmony import */ var cookie_parser__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(cookie_parser__WEBPACK_IMPORTED_MODULE_5__);\n/* harmony import */ var compression__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! compression */ \"compression\");\n/* harmony import */ var compression__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(compression__WEBPACK_IMPORTED_MODULE_6__);\n/* harmony import */ var helmet__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! helmet */ \"helmet\");\n/* harmony import */ var helmet__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(helmet__WEBPACK_IMPORTED_MODULE_7__);\n/* harmony import */ var cors__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! cors */ \"cors\");\n/* harmony import */ var cors__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(cors__WEBPACK_IMPORTED_MODULE_8__);\n/* harmony import */ var morgan__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! morgan */ \"morgan\");\n/* harmony import */ var morgan__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(morgan__WEBPACK_IMPORTED_MODULE_9__);\n/* harmony import */ var _configurations_hbs_config__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./../configurations/hbs.config */ \"./configurations/hbs.config.js\");\n/* harmony import */ var _configurations_env_vars__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./../configurations/env.vars */ \"./configurations/env.vars.js\");\n/* harmony import */ var _configurations_env_vars__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_configurations_env_vars__WEBPACK_IMPORTED_MODULE_11__);\n\n\n\n\n\n\n\n\n\n\n\n\n// import passport from './../configurations/passport.config'\n// import routes from '../routes'\n\n\nconst MongoStore = connect_mongo__WEBPACK_IMPORTED_MODULE_2___default()(express_session__WEBPACK_IMPORTED_MODULE_1___default.a);\n\nconst app = express__WEBPACK_IMPORTED_MODULE_0___default()();\n\n// view engine setup\napp.set('views', path__WEBPACK_IMPORTED_MODULE_4___default.a.join(__dirname, './../views'));\napp.engine('hbs', _configurations_hbs_config__WEBPACK_IMPORTED_MODULE_10__[\"default\"].engine);\napp.set('view engine', 'hbs');\n\n// middlewares \napp.use(express__WEBPACK_IMPORTED_MODULE_0___default.a.json());\napp.use(express__WEBPACK_IMPORTED_MODULE_0___default.a.urlencoded({ extended: true }));\napp.use(cookie_parser__WEBPACK_IMPORTED_MODULE_5___default()(_configurations_env_vars__WEBPACK_IMPORTED_MODULE_11___default.a.cookie_encryption));\napp.use(compression__WEBPACK_IMPORTED_MODULE_6___default()());\napp.use(helmet__WEBPACK_IMPORTED_MODULE_7___default()());\napp.use(cors__WEBPACK_IMPORTED_MODULE_8___default()());\napp.use('/public', express__WEBPACK_IMPORTED_MODULE_0___default.a.static(path__WEBPACK_IMPORTED_MODULE_4___default.a.resolve(__dirname, '../public')));\napp.use(express_session__WEBPACK_IMPORTED_MODULE_1___default()({\n    store: new MongoStore({ mongooseConnection: mongoose__WEBPACK_IMPORTED_MODULE_3___default.a.connection }),\n    secret: _configurations_env_vars__WEBPACK_IMPORTED_MODULE_11___default.a.session_encryption,\n    name: _configurations_env_vars__WEBPACK_IMPORTED_MODULE_11___default.a.cookie_name,\n    cookie: { maxAge: _configurations_env_vars__WEBPACK_IMPORTED_MODULE_11___default.a.session_expiration },\n    resave: false,\n    saveUninitialized: true\n}));\n\napp.use(morgan__WEBPACK_IMPORTED_MODULE_9___default()('dev'));\n\n// passport(app);\n// routes(app);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (app);\n/* WEBPACK VAR INJECTION */}.call(this, \"/\"))\n\n//# sourceURL=webpack:///./server/setup.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* WEBPACK VAR INJECTION */(function(__dirname) {/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var express_session__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! express-session */ \"express-session\");\n/* harmony import */ var express_session__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(express_session__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var connect_mongo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! connect-mongo */ \"connect-mongo\");\n/* harmony import */ var connect_mongo__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(connect_mongo__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! mongoose */ \"mongoose\");\n/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(mongoose__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var cookie_parser__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! cookie-parser */ \"cookie-parser\");\n/* harmony import */ var cookie_parser__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(cookie_parser__WEBPACK_IMPORTED_MODULE_5__);\n/* harmony import */ var compression__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! compression */ \"compression\");\n/* harmony import */ var compression__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(compression__WEBPACK_IMPORTED_MODULE_6__);\n/* harmony import */ var helmet__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! helmet */ \"helmet\");\n/* harmony import */ var helmet__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(helmet__WEBPACK_IMPORTED_MODULE_7__);\n/* harmony import */ var cors__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! cors */ \"cors\");\n/* harmony import */ var cors__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(cors__WEBPACK_IMPORTED_MODULE_8__);\n/* harmony import */ var morgan__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! morgan */ \"morgan\");\n/* harmony import */ var morgan__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(morgan__WEBPACK_IMPORTED_MODULE_9__);\n/* harmony import */ var _configurations_hbs_config__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./../configurations/hbs.config */ \"./configurations/hbs.config.js\");\n/* harmony import */ var _configurations_passport_config__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./../configurations/passport.config */ \"./configurations/passport.config.js\");\n/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../routes */ \"./routes/index.js\");\n/* harmony import */ var _configurations_env_vars__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./../configurations/env.vars */ \"./configurations/env.vars.js\");\n/* harmony import */ var _configurations_env_vars__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_configurations_env_vars__WEBPACK_IMPORTED_MODULE_13__);\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nconst MongoStore = connect_mongo__WEBPACK_IMPORTED_MODULE_2___default()(express_session__WEBPACK_IMPORTED_MODULE_1___default.a);\nconst app = express__WEBPACK_IMPORTED_MODULE_0___default()();\n\n// view engine setup\napp.set('views', path__WEBPACK_IMPORTED_MODULE_4___default.a.join(__dirname, './../views'));\napp.engine('hbs', _configurations_hbs_config__WEBPACK_IMPORTED_MODULE_10__[\"default\"].engine);\napp.set('view engine', 'hbs');\n\n// middlewares \napp.use(express__WEBPACK_IMPORTED_MODULE_0___default.a.json());\napp.use(express__WEBPACK_IMPORTED_MODULE_0___default.a.urlencoded({ extended: true }));\napp.use(cookie_parser__WEBPACK_IMPORTED_MODULE_5___default()(_configurations_env_vars__WEBPACK_IMPORTED_MODULE_13___default.a.cookie_encryption));\napp.use(compression__WEBPACK_IMPORTED_MODULE_6___default()());\napp.use(helmet__WEBPACK_IMPORTED_MODULE_7___default()());\napp.use(cors__WEBPACK_IMPORTED_MODULE_8___default()());\napp.use('/public', express__WEBPACK_IMPORTED_MODULE_0___default.a.static(path__WEBPACK_IMPORTED_MODULE_4___default.a.resolve(__dirname, '../public')));\napp.use(express_session__WEBPACK_IMPORTED_MODULE_1___default()({\n    store: new MongoStore({ mongooseConnection: mongoose__WEBPACK_IMPORTED_MODULE_3___default.a.connection }),\n    secret: _configurations_env_vars__WEBPACK_IMPORTED_MODULE_13___default.a.session_encryption,\n    name: _configurations_env_vars__WEBPACK_IMPORTED_MODULE_13___default.a.cookie_name,\n    cookie: { maxAge: _configurations_env_vars__WEBPACK_IMPORTED_MODULE_13___default.a.session_expiration },\n    resave: false,\n    saveUninitialized: true\n}));\n\napp.use(morgan__WEBPACK_IMPORTED_MODULE_9___default()('dev'));\n\nObject(_configurations_passport_config__WEBPACK_IMPORTED_MODULE_11__[\"default\"])(app);\n// routes(app);\napp.use(_routes__WEBPACK_IMPORTED_MODULE_12__[\"usersRoute\"]);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (app);\n/* WEBPACK VAR INJECTION */}.call(this, \"/\"))\n\n//# sourceURL=webpack:///./server/setup.js?");
+
+/***/ }),
+
+/***/ "./services/utils.service.js":
+/*!***********************************!*\
+  !*** ./services/utils.service.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const { to } = __webpack_require__(/*! await-to-js */ \"await-to-js\");\nconst pe = __webpack_require__(/*! parse-error */ \"parse-error\");\n\nmodule.exports.to = async promise => {\n    let err, res;\n\n    [err, res] = await to(promise);\n    if (err) return [pe(err)];\n\n    return [null, res];\n};\n\nmodule.exports.ReE = function (res, err, code) {\n    if (typeof code !== 'undefined') res.statusCode = code;\n\n    return res.json({ error: err });\n};\n\nmodule.exports.ReS = function (res, data, code) {\n    // Success Web Response\n    let send_data = { success: true };\n\n    if (typeof data == 'object') {\n        send_data = Object.assign(data, send_data); //merge the objects\n    }\n\n    if (typeof code !== 'undefined') res.statusCode = code;\n\n    return res.json(send_data);\n};\n\nmodule.exports.TE = TE = function (err_message, log) {\n    // TE stands for Throw Error\n    if (log === true) {\n        console.error(err_message);\n    }\n\n    throw new Error(err_message);\n};\n\n//# sourceURL=webpack:///./services/utils.service.js?");
 
 /***/ }),
 
@@ -142,6 +237,28 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* WEBPACK VAR INJECTION */(f
 /***/ (function(module, exports, __webpack_require__) {
 
 eval("module.exports = __webpack_require__(/*! e:\\programming\\2018\\code-club-custom-spa\\code.club.js */\"./code.club.js\");\n\n\n//# sourceURL=webpack:///multi_./code.club.js?");
+
+/***/ }),
+
+/***/ "await-to-js":
+/*!******************************!*\
+  !*** external "await-to-js" ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"await-to-js\");\n\n//# sourceURL=webpack:///external_%22await-to-js%22?");
+
+/***/ }),
+
+/***/ "bcrypt":
+/*!*************************!*\
+  !*** external "bcrypt" ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"bcrypt\");\n\n//# sourceURL=webpack:///external_%22bcrypt%22?");
 
 /***/ }),
 
@@ -244,6 +361,17 @@ eval("module.exports = require(\"helmet\");\n\n//# sourceURL=webpack:///external
 
 /***/ }),
 
+/***/ "jsonwebtoken":
+/*!*******************************!*\
+  !*** external "jsonwebtoken" ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"jsonwebtoken\");\n\n//# sourceURL=webpack:///external_%22jsonwebtoken%22?");
+
+/***/ }),
+
 /***/ "mongoose":
 /*!***************************!*\
   !*** external "mongoose" ***!
@@ -266,6 +394,50 @@ eval("module.exports = require(\"morgan\");\n\n//# sourceURL=webpack:///external
 
 /***/ }),
 
+/***/ "parse-error":
+/*!******************************!*\
+  !*** external "parse-error" ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"parse-error\");\n\n//# sourceURL=webpack:///external_%22parse-error%22?");
+
+/***/ }),
+
+/***/ "passport":
+/*!***************************!*\
+  !*** external "passport" ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"passport\");\n\n//# sourceURL=webpack:///external_%22passport%22?");
+
+/***/ }),
+
+/***/ "passport-jwt":
+/*!*******************************!*\
+  !*** external "passport-jwt" ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"passport-jwt\");\n\n//# sourceURL=webpack:///external_%22passport-jwt%22?");
+
+/***/ }),
+
+/***/ "passport-local":
+/*!*********************************!*\
+  !*** external "passport-local" ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"passport-local\");\n\n//# sourceURL=webpack:///external_%22passport-local%22?");
+
+/***/ }),
+
 /***/ "path":
 /*!***********************!*\
   !*** external "path" ***!
@@ -274,6 +446,17 @@ eval("module.exports = require(\"morgan\");\n\n//# sourceURL=webpack:///external
 /***/ (function(module, exports) {
 
 eval("module.exports = require(\"path\");\n\n//# sourceURL=webpack:///external_%22path%22?");
+
+/***/ }),
+
+/***/ "validator":
+/*!****************************!*\
+  !*** external "validator" ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"validator\");\n\n//# sourceURL=webpack:///external_%22validator%22?");
 
 /***/ })
 

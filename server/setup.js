@@ -10,12 +10,11 @@ import cors from 'cors'
 import logger from 'morgan'
 
 import hbs from './../configurations/hbs.config'
-// import passport from './../configurations/passport.config'
-// import routes from '../routes'
+import passport from './../configurations/passport.config'
+import {usersRoute} from '../routes'
 import CONFIG from './../configurations/env.vars'
 
 const MongoStore = connectMongo(session)
-
 const app = express()
 
 // view engine setup
@@ -42,7 +41,8 @@ app.use(session({
 
 app.use(logger('dev'));
 
-// passport(app);
+passport(app);
 // routes(app);
+app.use(usersRoute)
 
 export default app
