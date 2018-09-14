@@ -5,20 +5,25 @@ Getting Started
 
 The easiest way to get started is to clone the repository:
 
+
+ Get the latest snapshot
 ```bash
-# Get the latest snapshot
 git clone https://github.com/Boukhtam/CodeClub-custom-spa.git
-
-# Change directory
+```
+ Change directory
+```bash
 cd CodeClub-custom-spa
-
-# Install NPM dependencies
-# via npm
+```
+ Install NPM dependencies
+ via npm
+```bash
 npm install
-
-# or yarn
+```
+ or yarn
+```bash
 yarn install
-
-# Then simply start your app in development mode
-npm run dev
+```
+ Then simply start your app in development mode and mongodb
+```bash
+mongod & npm run dev
 ```
