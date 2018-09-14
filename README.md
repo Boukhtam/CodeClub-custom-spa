@@ -23,7 +23,11 @@ npm install
 ```bash
 yarn install
 ```
- Then simply start your app in development mode and mongodb
+ Then simply start your mongodb
 ```bash
-mongod & npm run dev
+mongod
+```
+ Then simply start your app in development mode
+```bash
+npm run dev
 ```
