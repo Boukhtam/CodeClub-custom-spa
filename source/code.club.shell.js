@@ -1,5 +1,7 @@
-
 import $ from 'jquery'
+import * as auth from './code.club.auth'
+console.log(auth);
+
 const config = {
     layout: () => {
         return Handlebars.templates.shell
@@ -23,8 +25,22 @@ const doSignOut = () => {
 
 }
 
-const applySignIn = () => {
+const applySignIn = async (event) => {
+    event.preventDefault()
+    let credentials = jqueryMap.$login.find('form').serialize()
 
+    let err, user;
+    [err, user] = await auth.signIn(credentials)
+
+    if (err) {
+
+    }
+
+    if (user) {
+        jqueryMap.$login.toggle(500);
+        setUser(user.email || user.phone);
+        setSignedIn(true)
+    }
 }
 
 const setUser = () => {
@@ -76,6 +92,8 @@ const setJqueryMap = () => {
         $signOutButton: $header.find('.sign-out'),
         $mn1: $header.find('.spare_1'),
         $mn2: $header.find('.spare_2'),
+
+        $submitSignIn: $login.find('.submit-btn'),
     }
 }
 
@@ -87,6 +105,8 @@ const init = ($wrapper) => {
 
     $(window)
             .bind('click', doHandleDocumentClick);
+
+    jqueryMap.$submitSignIn.bind('click', applySignIn);
 }
 
 export {init};
