@@ -23,11 +23,11 @@ The easiest way to get started is to clone the repository:
 ```bash
 > yarn install
 ```
- Then simply start your mongodb
+ start your mongodb
 ```bash
 > mongod
 ```
- Then simply start your app in development mode
+ Then simply run your app in development mode
 ```bash
 > npm run dev
 ```
