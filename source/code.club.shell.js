@@ -1,6 +1,5 @@
 import $ from 'jquery'
 import * as auth from './code.club.auth'
-import {formToJson} from './code.club.utils'
 
 const config = {
     layout: () => {
@@ -27,14 +26,13 @@ const doSignOut = () => {
 
 const applySignIn = async (event) => {
     event.preventDefault()
-    // let credentials = jqueryMap.$login.find('form').serialize()
-    let credentials = formToJson(jqueryMap.$login.find('form')[0])
-    
-    let msg, user 
-    [msg, user] = await auth.signIn(JSON.stringify(credentials))
+    let credentials = jqueryMap.$login.find('form').serialize()
 
-    if (msg) {
-        alert(msg)
+    let err, user;
+    [err, user] = await auth.signIn(credentials)
+
+    if (err) {
+
     }
 
     if (user) {
