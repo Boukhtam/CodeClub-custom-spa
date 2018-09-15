@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
 import * as jwt from 'jsonwebtoken'
-import {TE, te} from './../services/utils.service'
+import {TE, to} from './../services/utils.service'
 
 import ENV_VARS from './../configurations/env.vars'
 
@@ -102,8 +102,8 @@ UserSchema.methods.incLoginAttempts = async function (callback) {
 }
 
 UserSchema.methods.getJWT = function () {
-    let expiration_time = parseInt(CONFIG.jwt_expiration);
-    return 'Bearer ' + jwt.sign({user_id: this.id}, CONFIG.jwt_encryption, {expiresIn: expiration_time});
+    let expiration_time = parseInt(ENV_VARS.jwt_expiration);
+    return 'Bearer ' + jwt.sign({user_id: this.id}, ENV_VARS.jwt_encryption, {expiresIn: expiration_time});
 }
 
 
@@ -164,4 +164,4 @@ UserSchema.statics.getAuthenticated = function (username, password, callback) {
     })
 }
 
-export default mongoose.model('UserModel', UserSchema)
+export default mongoose.model('User', UserSchema)

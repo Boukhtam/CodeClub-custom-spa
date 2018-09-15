@@ -11,14 +11,18 @@ import logger from 'morgan'
 
 import hbs from './../configurations/hbs.config'
 import passport from './../configurations/passport.config'
-import {usersRoute} from '../routes'
+import routes from '../routes'
 import CONFIG from './../configurations/env.vars'
+const CURRENT_WORKING_DIR = process.cwd();
 
 const MongoStore = connectMongo(session)
+
+import devBundle from './dev.bundle' // To be commented out on production
 const app = express()
+devBundle.compile(app) // To be commented out on production
 
 // view engine setup
-app.set('views', path.join(__dirname, './../views'))
+app.set('views', path.resolve(CURRENT_WORKING_DIR, './views'))
 app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
 
@@ -29,7 +33,7 @@ app.use(cookieParser(CONFIG.cookie_encryption))
 app.use(compress())
 app.use(helmet())
 app.use(cors())
-app.use('/public', express.static(path.resolve(__dirname, '../public')))
+app.use('/public', express.static(path.resolve(CURRENT_WORKING_DIR, './public')))
 app.use(session({
     store: new MongoStore({mongooseConnection: mongoose.connection}),
     secret: CONFIG.session_encryption,
@@ -39,10 +43,9 @@ app.use(session({
     saveUninitialized: true
 }))
 
-app.use(logger('dev'));
+app.use(logger('dev'))
 
-passport(app);
-// routes(app);
-app.use(usersRoute)
+passport(app)
+routes(app)
 
 export default app

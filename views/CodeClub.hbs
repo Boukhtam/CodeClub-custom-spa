@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CodeClub.io</title>
+
+    <link rel="stylesheet" href="/public/styles/header-footer.css">
+    <link rel="stylesheet" href="/public/styles/styles.css">
+
+    <script src="/public/js/code.club.js"></script>
+    {{!-- <script src="/public/js/lib/jquery-1.9.1.js"></script> --}}
+    <script src="/public/js/lib/handlebars.runtime.min.js"></script>
+</head>
+<body>
+    <div id="code-club"></div>
+    
+    <script>
+        (() => {
+            let revive    = Handlebars.template,
+                templates = Handlebars.templates = Handlebars.templates || {};
+          {{#templates}}
+            templates['{{{name}}}'] = revive({{{template}}});
+          {{/templates}}
+        })();
+    </script>
+</body>
+</html>

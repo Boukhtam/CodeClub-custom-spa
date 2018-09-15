@@ -1,8 +1,9 @@
 {
     "verbose": false,
-    "watch": ["./server"],
+    "watch": ["*.*"],
     "ignore": [
-        "./node_modules"
+        "./node_modules",
+        "./dist"
     ],
     "exec": "webpack --mode=development --config webpack.config.server.js && node ./dist/server.generated.js"
 }

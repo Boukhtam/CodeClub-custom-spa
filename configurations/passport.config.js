@@ -2,6 +2,7 @@ import passport from 'passport'
 import { Strategy as  LocalStrategy} from "passport-local"
 import {ExtractJwt, Strategy} from 'passport-jwt'
 import validator from 'validator'
+import {to, ReS, ReE} from './../services/utils.service'
 
 import {UserModel} from './../models'
 
@@ -20,19 +21,19 @@ passport.use(new LocalStrategy({
     if(!password)
     done(null, false, { message: 'Please enter a password to login'});
   
-    let err, user;
+    let err, user, pass;
     if(validator.isEmail(unique_key)){
       auth_info.method = 'email';
       console.log(unique_key);
   
-      [err, user] = await to(User.findOne({"email": unique_key}));
+      [err, user] = await to(UserModel.findOne({"email": unique_key}));
       if(err) return done(err);
       
       if (!user) return done(null, false, { message: 'Incorrect email.' });
     } else if (validator.isMobilePhone(unique_key, 'any')){//checks if only phone number was sent
         auth_info.method = 'phone';
   
-        [err, user] = await to(User.findOne({"phone": unique_key}));
+        [err, user] = await to(UserModel.findOne({"phone": unique_key}));
         if(err) done(err);
         if (!user) return done(null, false, { message: 'Incorrect phone number.' });
     } else {
@@ -75,7 +76,7 @@ passport.use(new LocalStrategy({
   
   passport.use(new Strategy(opts, async function(jwt_payload, done){
       let err, user;
-      [err, user] = await to(User.findById(jwt_payload.user_id));
+      [err, user] = await to(UserModel.findById(jwt_payload.user_id));
       if(err) return done(err, false);
       if(user) {
           return done(null, user);
@@ -90,7 +91,7 @@ passport.use(new LocalStrategy({
   });
   
   passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user) {
+    UserModel.findById(id, function(err, user) {
       done(err, user);
     });
   });
