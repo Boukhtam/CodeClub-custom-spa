@@ -31,6 +31,7 @@ const update = async (req, res) => {};
 const remove = async (req, res) => {};
 
 const login = async (req, res) => {
+    console.log(req.query)
 
     if (!req.user && req.info) {
         res.statusCode = 401;
