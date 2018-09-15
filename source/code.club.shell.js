@@ -1,6 +1,5 @@
 import $ from 'jquery'
 import * as auth from './code.club.auth'
-console.log(auth);
 
 const config = {
     layout: () => {
