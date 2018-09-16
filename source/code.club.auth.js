@@ -1,4 +1,14 @@
 import * as $ from 'jquery'
+
+const config = {
+    TOKEN_STORAGE_NAME: 'code.club.auth'
+}
+
+const state = {
+    token: null,
+    user: null,
+}
+
 const signIn = async (credentials) => {
     
     try {
@@ -13,7 +23,14 @@ const signIn = async (credentials) => {
         })
         if (response.status === 200) {
             let userData = await response.json()
-            return [null, userData]
+
+            let token = userData.token;
+            state.token = token;
+            state.user = userData.user;
+
+            localStorage.setItem(config.TOKEN_STORAGE_NAME, JSON.stringify(token));
+
+            return [null, state.user]
         }
 
         let {message} = await response.json()
