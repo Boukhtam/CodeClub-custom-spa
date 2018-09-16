@@ -39,13 +39,21 @@ const applySignIn = async (event) => {
 
     if (user) {
         jqueryMap.$login.toggle(500);
-        setUser(user.email || user.phone);
+        setUser(user.username || user.email || user.phone);
         setSignedIn(true)
     }
 }
 
-const setUser = () => {
+const setSignedIn = (isSignedIn) => {
+    if (isSignedIn) {
+        jqueryMap.$user.addClass('signed-in');
+    } else {
+        jqueryMap.$user.removeClass('signed-in').addClass('not-signed-in');
+    }
+}
 
+const setUser = (username) => {
+    jqueryMap.$userMenuButton.html(username);
 }
 
 const doHandleDocumentClick = (event) => {
