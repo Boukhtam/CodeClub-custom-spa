@@ -24,7 +24,7 @@
     "handlebars": "^4.0.12",
     "handlebars-loader": "^1.7.0",
     "hbs": "^4.0.5",
-    "helmet": "^3.13.0",
+    "helmet": "^3.21.1",
     "jquery": "^3.3.1",
     "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.2.13",
